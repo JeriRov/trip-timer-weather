@@ -20,3 +20,6 @@ Using React.js (preferably, but you can use Angular or any other framework), imp
 2.	Sort trips by start trip date
 3.	Implement login through third-party providers (Gmail, Facebook, etc.) - at least one of
 4.	Implement store data (trips) after reloading page.
+
+**Main.png:**![Main.png](./assets/readme/Main.png)
+**Modal.png:**![Modal.png](./assets/readme/Modal.png)
