@@ -8,7 +8,7 @@ const tripSlice = createSlice({
   initialState: tripInitialState,
   reducers: {
     setTrip: (state, action: PayloadAction<Trip | null>) => {
-      return { ...state, webSocket: action.payload };
+      return { ...state, currentTrip: action.payload };
     },
   },
 });
