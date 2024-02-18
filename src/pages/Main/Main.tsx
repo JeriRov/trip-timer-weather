@@ -4,6 +4,7 @@ import React from "react";
 
 import { Trip } from "../../api/trip/trip.types";
 import { Container } from "../../components/Container/Container";
+import { Forecast } from "../../components/Forecast/Forecast";
 import { TripList } from "../../components/TripList/TripList";
 import { setTrip } from "../../redux/features/TripSlice/tripSlice";
 import { useAppDispatch } from "../../redux/hooks";
@@ -42,6 +43,7 @@ export const Main = () => {
   };
   const handleTripClick = (trip: Trip) => {
     dispatch(setTrip(trip));
+    console.log("Trip clicked", trip);
   };
 
   return (
@@ -56,7 +58,7 @@ export const Main = () => {
         onTripClick={handleTripClick}
       />
       <h2 className={"font-normal"}>Week</h2>
-      <p>Forecast</p>
+      <Forecast />
     </Container>
   );
 };
