@@ -3,22 +3,31 @@ import "./Main.css";
 import React, { ChangeEvent, useState } from "react";
 
 import { Trip } from "../../api/trip/trip.types";
+import { AddTripModal } from "../../components/AddTripModal/AddTripModal";
 import { Container } from "../../components/Container/Container";
 import { CustomInput } from "../../components/CustomInput/CustomInput";
 import { Forecast } from "../../components/Forecast/Forecast";
 import { SearchIcon } from "../../components/Icons/SearchIcon";
 import { TripList } from "../../components/TripList/TripList";
-import { setTrip } from "../../redux/features/TripSlice/tripSlice";
+import { setTrip } from "../../redux/features/trip/tripSlice";
 import { useAppDispatch } from "../../redux/hooks";
 import { MOCK_TRIPS } from "./main.config";
 
 export const Main = () => {
   const dispatch = useAppDispatch();
   const [searchQuery, setSearchQuery] = useState("");
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [trips, setTrips] = useState<Trip[]>(MOCK_TRIPS);
-  const handleAddTripClick = () => {
-    // TODO: Implement
+  const [showModal, setShowModal] = useState(false);
+
+  const handleAddTripClick = (trip: Trip) => {
+    setTrips(prevState => [...prevState, trip]);
+  };
+
+  const handleModalOpen = () => {
+    setShowModal(true);
+  };
+  const handleModalClose = () => {
+    setShowModal(false);
   };
 
   const handleTripClick = (trip: Trip) => {
@@ -31,7 +40,7 @@ export const Main = () => {
   };
 
   const filteredTrips = trips.filter(trip =>
-    trip.name.toLowerCase().includes(searchQuery.toLowerCase())
+    trip.city.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   return (
@@ -45,10 +54,17 @@ export const Main = () => {
         icon={<SearchIcon />}
         onChange={handleSearchInputChange}
       />
+      {showModal && (
+        <AddTripModal
+          show={showModal}
+          onClose={handleModalClose}
+          onTripAdd={handleAddTripClick}
+        />
+      )}
       <TripList
         trips={filteredTrips}
-        onAddTripClick={handleAddTripClick}
         onTripClick={handleTripClick}
+        onAddTripClick={handleModalOpen}
       />
       <h2 className={"font-normal"}>Week</h2>
       <Forecast />
