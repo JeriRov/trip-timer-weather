@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 
-import { tripReducer } from "./features/TripSlice/tripSlice";
+import { tripReducer } from "./features/trip/tripSlice";
 
 export const makeStore = () =>
   configureStore({

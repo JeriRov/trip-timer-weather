@@ -3,6 +3,7 @@
     display: flex;
     flex-direction: row;
     gap: 4.5rem;
+    padding-bottom: .5rem;
 }
 
 .trip-list img {
@@ -11,11 +12,10 @@
     object-fit: cover;
 }
 
-.trip-add-button {
+.trip-list__add-button {
     background-color: var(--gray-100);
-    width: var(--image-width);
     height: var(--image-height);
-    max-width: 100%;
+    min-width: var(--image-width);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -24,11 +24,11 @@
     font-size: larger;
 }
 
-.trip-add-button:hover {
+.trip-list__add-button:hover {
     background-color: var(--gray-200);
     cursor: pointer;
 }
 
-.trip-add-button-plus {
+.trip-list__add-button-icon {
     font-size: 3rem;
 }

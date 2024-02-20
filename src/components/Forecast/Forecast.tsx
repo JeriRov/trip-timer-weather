@@ -14,7 +14,7 @@ export const Forecast = () => {
   const fetchForecast = async () => {
     if (!currentTrip) return;
     const fetchedForecast = await getForecastByTimeline(
-      currentTrip.name,
+      currentTrip.city.name,
       currentTrip.startDate,
       currentTrip.endDate
     );
@@ -29,7 +29,7 @@ export const Forecast = () => {
     <div className="forecast-container">
       {currentTrip ? (
         forecast?.days.map(day => {
-          return <ForecastItem day={day} />;
+          return <ForecastItem key={day.datetime} day={day} />;
         })
       ) : (
         <div>No trip selected</div>

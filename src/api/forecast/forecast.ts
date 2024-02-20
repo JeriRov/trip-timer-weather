@@ -1,16 +1,15 @@
-import { format } from "date-fns";
-
+import { formatDateToString } from "../../utils/formatDateToString";
 import { weatherAPI } from "../index";
 import { ForecastByTimelineType } from "./forecast.types";
 const WEATHER_API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
-const DATE_FORMAT = "yyyy-MM-dd";
+
 export const getForecastByTimeline = async (
   location: string,
   startDate: Date,
   endDate: Date
 ) => {
-  const formattedStartDate = format(startDate, DATE_FORMAT);
-  const formattedEndDate = format(endDate, DATE_FORMAT);
+  const formattedStartDate = formatDateToString(startDate);
+  const formattedEndDate = formatDateToString(endDate);
   console.log(
     "request: ",
     location,
