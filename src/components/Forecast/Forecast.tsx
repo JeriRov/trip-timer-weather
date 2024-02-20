@@ -14,7 +14,7 @@ export const Forecast = () => {
   const fetchForecast = async () => {
     if (!currentTrip) return;
     const fetchedForecast = await getForecastByTimeline(
-      currentTrip.name,
+      currentTrip.city.name,
       currentTrip.startDate,
       currentTrip.endDate
     );
