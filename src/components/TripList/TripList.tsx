@@ -13,14 +13,14 @@ export const TripList: FC<TripListProps> = ({
   return (
     <div className="trip-list">
       {trips.map(trip => (
-        <TripItem trip={trip} onClick={handleTripClick} />
+        <TripItem key={trip.id} trip={trip} onClick={handleTripClick} />
       ))}
       <button
         type={"button"}
-        className="trip-add-button"
+        className="trip-list__add-button"
         onClick={handleAddTripClick}
       >
-        <span className="trip-add-button-plus"> + </span>
+        <span className="trip-list__add-button-icon"> + </span>
         <span> Add trip </span>
       </button>
     </div>
