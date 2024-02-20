@@ -29,7 +29,7 @@ export const Forecast = () => {
     <div className="forecast-container">
       {currentTrip ? (
         forecast?.days.map(day => {
-          return <ForecastItem day={day} />;
+          return <ForecastItem key={day.datetime} day={day} />;
         })
       ) : (
         <div>No trip selected</div>
