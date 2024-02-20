@@ -1,4 +1,4 @@
-input[type=text] {
+.custom-input {
     border: none;
     outline: none;
     width: 100%;
