@@ -1,7 +1,11 @@
+export type City = {
+  name: string;
+  image: string;
+};
+
 export type Trip = {
   id: string;
-  name: string;
+  city: City;
   startDate: Date;
   endDate: Date;
-  image: string;
 };
