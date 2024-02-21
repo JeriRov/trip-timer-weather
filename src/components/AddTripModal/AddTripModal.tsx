@@ -26,6 +26,7 @@ export const AddTripModal: FC<AddTripModalProps> = ({
 
   const handleDoneClick = () => {
     if (!selectedCity || !startDate || !endDate) return;
+    if (startDate > endDate) return;
     onTripAdd({
       id: new Date().getTime().toString(),
       city: selectedCity,

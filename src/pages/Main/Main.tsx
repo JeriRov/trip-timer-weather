@@ -9,20 +9,23 @@ import { CustomInput } from "../../components/CustomInput/CustomInput";
 import { Forecast } from "../../components/Forecast/Forecast";
 import { SearchIcon } from "../../components/Icons/SearchIcon";
 import { TripList } from "../../components/TripList/TripList";
+import { WeatherSidebar } from "../../components/WeatherSidebar/WeatherSidebar";
+import { useDebounce } from "../../hooks/useDebounce";
 import { setTrip } from "../../redux/features/trip/tripSlice";
 import { useAppDispatch } from "../../redux/hooks";
-import { debounce } from "../../utils/debounce";
-import { MOCK_TRIPS } from "./main.config";
+import { DEBOUNCE_DELAY, MOCK_TRIPS } from "./main.config";
 
 export const Main = () => {
   const dispatch = useAppDispatch();
   const [searchQuery, setSearchQuery] = useState("");
   const [trips, setTrips] = useState<Trip[]>(MOCK_TRIPS);
   const [showModal, setShowModal] = useState(false);
+  const [isActive, setIsActive] = useState(false);
+  const [activeTrip, setActiveTrip] = useState<Trip | null>(null);
 
-  const handleAddTripClick = debounce<Trip>((trip: Trip) => {
+  const debouncedHandleAddTripClick = useDebounce<Trip>((trip: Trip) => {
     setTrips(prevState => [...prevState, trip]);
-  }, 300);
+  }, DEBOUNCE_DELAY);
 
   const handleModalOpen = () => {
     setShowModal(true);
@@ -31,8 +34,19 @@ export const Main = () => {
     setShowModal(false);
   };
 
-  const handleTripClick = (trip: Trip) => {
+  const debouncedHandleTripClick = useDebounce<Trip>((trip: Trip) => {
     dispatch(setTrip(trip));
+  }, DEBOUNCE_DELAY);
+
+  const handleTripClick = (trip: Trip) => {
+    if (activeTrip && activeTrip.id === trip.id) {
+      setIsActive(false);
+      setActiveTrip(null);
+    } else {
+      setIsActive(true);
+      setActiveTrip(trip);
+    }
+    debouncedHandleTripClick(trip);
   };
 
   const handleSearchInputChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -45,29 +59,34 @@ export const Main = () => {
 
   return (
     <Container>
-      <h1>
-        <span className={"font-normal"}>Weather</span> Forecast
-      </h1>
-      <CustomInput
-        className="trip-search"
-        placeholder="Search your trip"
-        icon={<SearchIcon />}
-        onChange={handleSearchInputChange}
-      />
-      {showModal && (
-        <AddTripModal
-          show={showModal}
-          onClose={handleModalClose}
-          onTripAdd={handleAddTripClick}
-        />
-      )}
-      <TripList
-        trips={filteredTrips}
-        onTripClick={handleTripClick}
-        onAddTripClick={handleModalOpen}
-      />
-      <h2 className={"font-normal"}>Forecast</h2>
-      <Forecast />
+      <WeatherSidebar
+        isActive={isActive}
+        toggleSidebar={() => setIsActive(!isActive)}
+      >
+        <div className="main__content">
+          <h1>
+            <span className={"font-normal"}>Weather</span> Forecast
+          </h1>
+          <CustomInput
+            className="trip-search"
+            placeholder="Search your trip"
+            icon={<SearchIcon />}
+            onChange={handleSearchInputChange}
+          />
+          <AddTripModal
+            show={showModal}
+            onClose={handleModalClose}
+            onTripAdd={debouncedHandleAddTripClick}
+          />
+          <TripList
+            trips={filteredTrips}
+            onTripClick={handleTripClick}
+            onAddTripClick={handleModalOpen}
+          />
+          <h2 className={"font-normal"}>Forecast</h2>
+          <Forecast />
+        </div>
+      </WeatherSidebar>
     </Container>
   );
 };

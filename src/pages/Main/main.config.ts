@@ -1,6 +1,7 @@
 import { Trip } from "../../api/trip/trip.types";
 import { MOCK_CITIES } from "../../constants/cities";
 
+export const DEBOUNCE_DELAY = 500;
 export const MOCK_TRIPS: Trip[] = [
   {
     id: "1",

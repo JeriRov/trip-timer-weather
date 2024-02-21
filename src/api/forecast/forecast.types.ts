@@ -6,7 +6,7 @@ export type ForecastPerDayType = {
   icon: string;
 };
 
-export type ForecastByTimelineType = {
+export type ForecastType = {
   days: ForecastPerDayType[];
   address: string;
   tzoffset: number;

@@ -6,3 +6,7 @@
   width: 20rem;
   margin: 4rem 0 4rem 0;
 }
+
+.main__container {
+  display: flex;
+}
