@@ -1,10 +1,10 @@
-import "./Selector.css";
+import "./selector.styles.css";
 
 import React, { ChangeEvent, useState } from "react";
 
-import { SelectorProps } from "../../components/Selector/selector.types";
+import { SelectorProps } from "./selector.types";
 
-export const Selector = <T,>({
+export function Selector<T>({
   items,
   renderItem,
   onSelectItem,
@@ -12,7 +12,7 @@ export const Selector = <T,>({
   getKey,
   className,
   ...props
-}: SelectorProps<T>) => {
+}: SelectorProps<T>) {
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [suggestions, setSuggestions] = useState<T[]>([]);
   const [showSuggestions, setShowSuggestions] = useState<boolean>(false);
@@ -47,7 +47,7 @@ export const Selector = <T,>({
   };
 
   return (
-    <div className="selector__container">
+    <div className="selector__item-container">
       <input
         type="text"
         value={searchQuery}
@@ -58,10 +58,11 @@ export const Selector = <T,>({
         {...props}
       />
       {showSuggestions && (
-        <ul className="selector__items-container">
+        <ul className="selector__list-container">
           {suggestions.length > 0 ? (
             suggestions.map(item => (
               <button
+                type="button"
                 key={getKey(item)}
                 onClick={() => handleSelectItem(item)}
                 className="selector__item"
@@ -70,10 +71,10 @@ export const Selector = <T,>({
               </button>
             ))
           ) : (
-            <span className={"selector__no-items-message"}>No items found</span>
+            <span className="selector__no-items-message">No items found</span>
           )}
         </ul>
       )}
     </div>
   );
-};
+}

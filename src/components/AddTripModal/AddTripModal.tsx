@@ -1,21 +1,21 @@
-import "./AddTripModal.css";
+import "./addTripModal.styles.css";
 
-import React, { FC, useState } from "react";
+import React, { useState } from "react";
 
 import { City } from "../../api/trip/trip.types";
-import { CustomButton } from "../../components/CustomButton/CustomButton";
-import { CustomDatePicker } from "../../components/CustomDatePicker/CustomDatePicker";
-import { CloseIcon } from "../../components/Icons/CloseIcon";
-import { Selector } from "../../components/Selector/Selector";
+import { CustomButton } from "../CustomButton/CustomButton";
+import { CustomDatePicker } from "../CustomDatePicker/CustomDatePicker";
+import { CloseIcon } from "../Icons/CloseIcon";
+import { Selector } from "../Selector/Selector";
 import { MOCK_CITIES } from "../../constants/cities";
 import { MAX_DATE } from "./addTripModal.config";
 import { AddTripModalProps } from "./addTripModal.types";
 
-export const AddTripModal: FC<AddTripModalProps> = ({
+export function AddTripModal({
   show,
   onTripAdd,
   onClose,
-}) => {
+}: Readonly<AddTripModalProps>) {
   const [selectedCity, setSelectedCity] = useState<City>();
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
@@ -35,25 +35,31 @@ export const AddTripModal: FC<AddTripModalProps> = ({
     });
     onClose();
   };
-
   return (
-    <div className={`modal ${show ? "show" : ""}`}>
-      <div className="modal__body">
-        <div className="modal__header">
-          <h2 className="modal__header-title">Create trip</h2>
-          <button className="modal__close" onClick={onClose}>
+    <div className={`weather-modal ${show ? "show" : ""}`}>
+      <div className="weather-modal__body">
+        <div className="weather-modal__header">
+          <h2 className="weather-modal__header-title">Create trip</h2>
+          <button
+            className="weather-modal__close"
+            onClick={onClose}
+            type="button"
+          >
             <CloseIcon />
           </button>
         </div>
-        <div className="modal__content">
-          <form autoComplete="off" className="modal__form modal__label-text">
+        <div className="weather-modal__content">
+          <form
+            autoComplete="off"
+            className="weather-modal__form weather-modal__label-text"
+          >
             <p>
               <span>*</span> City
             </p>
             <Selector<City>
               name="city-selector"
-              className={"modal__selector"}
-              placeholder={"Please select a city"}
+              className="weather-modal__selector"
+              placeholder="Please select a city"
               onVisibleItem={(city: City) => city.name}
               getKey={(city: City) => city.name}
               items={MOCK_CITIES}
@@ -68,7 +74,7 @@ export const AddTripModal: FC<AddTripModalProps> = ({
               maxDate={MAX_DATE}
               placeholder="Please select a start date"
               name="start-datepicker"
-              className="modal__datepicker"
+              className="weather-modal__datepicker"
               onSelectDate={handleInputChange(setStartDate)}
             />
             <p>
@@ -79,13 +85,13 @@ export const AddTripModal: FC<AddTripModalProps> = ({
               maxDate={MAX_DATE}
               name="end-datepicker"
               placeholder="Please select an end date"
-              className="modal__datepicker"
+              className="weather-modal__datepicker"
               onSelectDate={handleInputChange(setEndDate)}
             />
           </form>
         </div>
-        <div className="modal__footer">
-          <div className="modal_button-container">
+        <div className="weather-modal__footer">
+          <div className="weather-modal_button-container">
             <CustomButton variant="outlined" onClick={onClose}>
               Cancel
             </CustomButton>
@@ -95,4 +101,4 @@ export const AddTripModal: FC<AddTripModalProps> = ({
       </div>
     </div>
   );
-};
+}

@@ -24,7 +24,7 @@
     border-color: var(--gray-200);
 }
 
-.selector__items-container {
+.selector__list-container {
     padding: 0.5rem;
     margin: 0;
     width: 100%;
@@ -40,7 +40,7 @@
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.selector__container {
+.selector__item-container {
     display: block;
     position: relative;
 }

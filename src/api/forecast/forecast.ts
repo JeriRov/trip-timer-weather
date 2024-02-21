@@ -3,6 +3,7 @@ import { format } from "date-fns";
 import { FORMAT } from "../../constants/formats";
 import { weatherAPI } from "../index";
 import { ForecastType } from "./forecast.types";
+
 const WEATHER_API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
 
 export const getForecastByTimeline = async (

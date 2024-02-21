@@ -2,8 +2,8 @@ import "./Main.css";
 
 import React, { ChangeEvent, useState } from "react";
 
-import { Trip } from "../../api/trip/trip.types";
 import { AddTripModal } from "../../components/AddTripModal/AddTripModal";
+import { Trip } from "../../api/trip/trip.types";
 import { Container } from "../../components/Container/Container";
 import { CustomInput } from "../../components/CustomInput/CustomInput";
 import { Forecast } from "../../components/Forecast/Forecast";
@@ -15,7 +15,7 @@ import { setTrip } from "../../redux/features/trip/tripSlice";
 import { useAppDispatch } from "../../redux/hooks";
 import { DEBOUNCE_DELAY, MOCK_TRIPS } from "./main.config";
 
-export const Main = () => {
+export function Main() {
   const dispatch = useAppDispatch();
   const [searchQuery, setSearchQuery] = useState("");
   const [trips, setTrips] = useState<Trip[]>(MOCK_TRIPS);
@@ -65,7 +65,7 @@ export const Main = () => {
       >
         <div className="main__content">
           <h1>
-            <span className={"font-normal"}>Weather</span> Forecast
+            <span className="font-normal">Weather</span> Forecast
           </h1>
           <CustomInput
             className="trip-search"
@@ -83,10 +83,10 @@ export const Main = () => {
             onTripClick={handleTripClick}
             onAddTripClick={handleModalOpen}
           />
-          <h2 className={"font-normal"}>Forecast</h2>
+          <h2 className="font-normal">Forecast</h2>
           <Forecast />
         </div>
       </WeatherSidebar>
     </Container>
   );
-};
+}

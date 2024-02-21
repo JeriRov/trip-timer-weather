@@ -1,14 +1,16 @@
-import "./TripItem.css";
+import "./tripItem.styles.css";
 
-import { FC } from "react";
+import { TripItemProps } from "./tripItem.types";
 
-import { TripItemProps } from "../../components/TripItem/tripItem.types";
-export const TripItem: FC<TripItemProps> = ({ trip, onClick: handleClick }) => {
+export function TripItem({
+  trip,
+  onClick: handleClick,
+}: Readonly<TripItemProps>) {
   return (
     <button
       onClick={() => handleClick && handleClick(trip)}
-      type={"button"}
-      className={"trip-item__container"}
+      type="button"
+      className="trip-item__container"
       key={trip.id}
     >
       <img src={trip.city.image} alt={trip.city.name} />
@@ -20,4 +22,4 @@ export const TripItem: FC<TripItemProps> = ({ trip, onClick: handleClick }) => {
       </div>
     </button>
   );
-};
+}

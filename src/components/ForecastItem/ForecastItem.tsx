@@ -1,4 +1,4 @@
-import "./ForecastItem.css";
+import "./forecastItem.styles.css";
 
 import { format } from "date-fns";
 import React from "react";
@@ -9,7 +9,7 @@ export type ForecastItemProps = {
   day: ForecastPerDayType;
 };
 
-export const ForecastItem = ({ day }: ForecastItemProps) => {
+export function ForecastItem({ day }: Readonly<ForecastItemProps>) {
   const getWeekday = (date: string) => {
     return format(new Date(date), "EEEE");
   };
@@ -27,4 +27,4 @@ export const ForecastItem = ({ day }: ForecastItemProps) => {
       </span>
     </div>
   );
-};
+}

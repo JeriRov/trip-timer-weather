@@ -1,19 +1,19 @@
 import "./CustomDatePicker.css";
 
 import { format } from "date-fns";
-import React, { ChangeEvent, FC, FocusEvent, useState } from "react";
+import React, { ChangeEvent, FocusEvent, useState } from "react";
 
-import { CalendarIcon } from "../../components/Icons/CalendarIcon";
+import { CalendarIcon } from "../Icons/CalendarIcon";
 import { FORMAT } from "../../constants/formats";
 import { CustomDatePickerProps } from "./customDatePicker.types";
 
-export const CustomDatePicker: FC<CustomDatePickerProps> = ({
+export function CustomDatePicker({
   onSelectDate,
   className,
   minDate,
   maxDate,
   ...props
-}) => {
+}: CustomDatePickerProps) {
   const [selectedDate, setSelectedDate] = useState("");
 
   const handleDateChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -51,4 +51,4 @@ export const CustomDatePicker: FC<CustomDatePickerProps> = ({
       <CalendarIcon className="custom-datepicker__calendar-icon" />
     </div>
   );
-};
+}
