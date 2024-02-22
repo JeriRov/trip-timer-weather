@@ -9,7 +9,7 @@
     border-radius: 1rem;
 }
 
-.custom-input-container {
+.custom-input__container {
     display: flex;
     align-items: center;
     justify-content: center;

@@ -11,6 +11,8 @@ import { Selector } from "components/Selector/Selector";
 
 import { MOCK_CITIES } from "constants/cities";
 
+import { useToast } from "context/ToastContext/ToastContext";
+
 import { City } from "api/trip/trip.types";
 
 export function AddTripModal({
@@ -19,22 +21,35 @@ export function AddTripModal({
   onClose: handleClose,
 }: Readonly<AddTripModalProps>) {
   const [selectedCity, setSelectedCity] = useState<City>();
-  const [startDate, setStartDate] = useState("");
-  const [endDate, setEndDate] = useState("");
+  const [startDate, setStartDate] = useState<string>("");
+  const [endDate, setEndDate] = useState<string>("");
+  const { toast } = useToast();
+  const handleStartDateChange = (date: string) => {
+    setStartDate(date);
+  };
 
-  const handleInputChange =
-    (setter: React.Dispatch<React.SetStateAction<string>>) => (value: string) =>
-      setter(value);
+  const handleEndDateChange = (date: string) => {
+    setEndDate(date);
+  };
 
   const handleDoneClick = () => {
-    if (!selectedCity || !startDate || !endDate) return;
-    if (startDate > endDate) return;
+    if (!selectedCity || !startDate || !endDate) {
+      toast("Please fill all the fields!", "error");
+      return;
+    }
+    if (startDate > endDate) {
+      toast("Start date must be before end date!", "error");
+      return;
+    }
     onTripAdd({
       id: new Date().getTime().toString(),
       city: selectedCity,
       startDate: new Date(startDate),
       endDate: new Date(endDate),
     });
+    setSelectedCity(undefined);
+    setStartDate("");
+    setEndDate("");
     handleClose();
   };
 
@@ -85,8 +100,9 @@ export function AddTripModal({
               maxDate={MAX_DATE}
               minDate={new Date()}
               name="start-datepicker"
-              onSelectDate={handleInputChange(setStartDate)}
+              onSelectDate={handleStartDateChange}
               placeholder="Please select a start date"
+              value={startDate}
             />
             <p>
               <span>*</span> End date
@@ -96,8 +112,9 @@ export function AddTripModal({
               maxDate={MAX_DATE}
               minDate={new Date()}
               name="end-datepicker"
-              onSelectDate={handleInputChange(setEndDate)}
+              onSelectDate={handleEndDateChange}
               placeholder="Please select an end date"
+              value={endDate}
             />
           </form>
         </div>

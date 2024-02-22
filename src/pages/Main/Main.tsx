@@ -1,4 +1,4 @@
-import "./Main.css";
+import "pages/Main/main.styles.css";
 
 import React, { ChangeEvent, useState } from "react";
 
@@ -77,10 +77,10 @@ export function Main() {
       >
         <div className="main__content">
           <h1>
-            <span className="font-normal">Weather</span> Forecast
+            <span className="main__font-normal">Weather</span> Forecast
           </h1>
           <CustomInput
-            className="trip-search"
+            className="main__trip-search"
             icon={<SearchIcon />}
             onChange={handleSearchInputChange}
             placeholder="Search your trip"
@@ -95,7 +95,7 @@ export function Main() {
             onTripClick={handleTripClick}
             trips={filteredTrips}
           />
-          <h2 className="font-normal">Forecast</h2>
+          <h2 className="main__font-normal">Forecast</h2>
           <Forecast />
         </div>
       </WeatherSidebar>

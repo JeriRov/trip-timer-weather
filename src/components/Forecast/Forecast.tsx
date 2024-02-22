@@ -36,13 +36,13 @@ export function Forecast() {
   }, [currentTrip, toast]);
 
   return (
-    <div className="forecast-container">
+    <div className="forecast__container">
       {currentTrip ? (
         forecast?.days.map(day => {
           return <ForecastItem key={day.datetime} day={day} />;
         })
       ) : (
-        <div>No trip selected</div>
+        <div className="forecast__no-trip-text">No trip selected</div>
       )}
     </div>
   );
