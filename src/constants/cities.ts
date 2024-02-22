@@ -1,4 +1,4 @@
-import { City } from "../api/trip/trip.types";
+import { City } from "api/trip/trip.types";
 
 export const MOCK_CITIES: City[] = [
   {

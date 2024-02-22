@@ -1,16 +1,17 @@
-import "../../components/Container/Container.css";
+import "./container.styles.css";
 
-import React, { FC, PropsWithChildren } from "react";
+import React, { PropsWithChildren } from "react";
 
-import { ContainerProps } from "./container.types";
-export const Container: FC<PropsWithChildren<ContainerProps>> = ({
+import { ContainerProps } from "components/Container/container.types";
+
+export function Container({
   children,
   className,
   ...props
-}) => {
+}: PropsWithChildren<ContainerProps>) {
   return (
     <div className={`container ${className}`} {...props}>
       {children}
     </div>
   );
-};
+}

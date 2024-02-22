@@ -1,10 +1,11 @@
-import "./Selector.css";
+import "./selector.styles.css";
 
 import React, { ChangeEvent, useState } from "react";
 
-import { SelectorProps } from "../../components/Selector/selector.types";
+import { BLUR_TIMEOUT } from "components/Selector/selector.config";
+import { SelectorProps } from "components/Selector/selector.types";
 
-export const Selector = <T,>({
+export function Selector<T>({
   items,
   renderItem,
   onSelectItem,
@@ -12,7 +13,7 @@ export const Selector = <T,>({
   getKey,
   className,
   ...props
-}: SelectorProps<T>) => {
+}: SelectorProps<T>) {
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [suggestions, setSuggestions] = useState<T[]>([]);
   const [showSuggestions, setShowSuggestions] = useState<boolean>(false);
@@ -25,6 +26,7 @@ export const Selector = <T,>({
         .toLowerCase()
         .includes(e.target.value.toLowerCase())
     );
+
     setSuggestions(filteredItems);
   };
 
@@ -43,37 +45,38 @@ export const Selector = <T,>({
   const handleBlur = () => {
     setTimeout(() => {
       setShowSuggestions(false);
-    }, 200);
+    }, BLUR_TIMEOUT);
   };
 
   return (
-    <div className="selector__container">
+    <div className="selector__item-container">
       <input
-        type="text"
-        value={searchQuery}
+        className={`selector ${className}`}
+        onBlur={handleBlur}
         onChange={handleInputChange}
         onFocus={handleFocus}
-        onBlur={handleBlur}
-        className={`selector ${className}`}
+        type="text"
+        value={searchQuery}
         {...props}
       />
-      {showSuggestions && (
-        <ul className="selector__items-container">
+      {showSuggestions ? (
+        <ul className="selector__list-container">
           {suggestions.length > 0 ? (
             suggestions.map(item => (
               <button
                 key={getKey(item)}
-                onClick={() => handleSelectItem(item)}
                 className="selector__item"
+                onClick={() => handleSelectItem(item)}
+                type="button"
               >
                 {renderItem(item)}
               </button>
             ))
           ) : (
-            <span className={"selector__no-items-message"}>No items found</span>
+            <span className="selector__no-items-message">No items found</span>
           )}
         </ul>
-      )}
+      ) : null}
     </div>
   );
-};
+}

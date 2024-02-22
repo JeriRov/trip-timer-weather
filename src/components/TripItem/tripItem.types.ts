@@ -1,4 +1,4 @@
-import { Trip } from "../../api/trip/trip.types";
+import { Trip } from "api/trip/trip.types";
 
 export type TripItemProps = {
   trip: Trip;
