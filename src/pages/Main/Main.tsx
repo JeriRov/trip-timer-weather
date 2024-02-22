@@ -60,9 +60,14 @@ export function Main() {
     setSearchQuery(event.target.value);
   };
 
-  const filteredTrips = trips.filter(trip =>
-    trip.city.name.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  const filteredTrips = trips
+    .filter(trip =>
+      trip.city.name.toLowerCase().includes(searchQuery.toLowerCase())
+    )
+    .sort(
+      (a, b) =>
+        new Date(a.startDate).getTime() - new Date(b.startDate).getTime()
+    );
 
   return (
     <Container>
