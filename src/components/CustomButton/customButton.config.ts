@@ -1,4 +1,4 @@
 export const BUTTON_VARIANT_STYLES = {
-  outlined: "custom-button_outlined",
-  primary: "custom-button_primary",
+  outlined: "custom-button__outlined",
+  primary: "custom-button__primary",
 };
