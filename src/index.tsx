@@ -6,6 +6,7 @@ import { Provider } from "react-redux";
 
 import App from "App";
 import { makeStore } from "app/store";
+import { ToastProvider } from "context/ToastContext/ToastContext";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -15,7 +16,9 @@ const store = makeStore();
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <ToastProvider>
+        <App />
+      </ToastProvider>
     </Provider>
   </React.StrictMode>
 );
