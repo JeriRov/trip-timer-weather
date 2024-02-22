@@ -2,11 +2,13 @@ import "./forecast.styles.css";
 
 import React, { useEffect, useState } from "react";
 
-import { getForecastByTimeline } from "../../api/forecast/forecast";
-import { ForecastType } from "../../api/forecast/forecast.types";
-import { ForecastItem } from "../ForecastItem/ForecastItem";
-import { useAppSelector } from "../../redux/hooks";
-import { RootState } from "../../redux/store";
+import { ForecastItem } from "components/ForecastItem/ForecastItem";
+
+import { getForecastByTimeline } from "api/forecast/forecast";
+import { useAppSelector } from "app/hooks";
+import { RootState } from "app/store";
+
+import { ForecastType } from "api/forecast/forecast.types";
 
 export function Forecast() {
   const { currentTrip } = useAppSelector((state: RootState) => state.trip);
@@ -21,16 +23,18 @@ export function Forecast() {
           currentTrip.startDate,
           currentTrip.endDate
         );
+
         setForecast(fetchedForecast);
       } catch (error) {
         console.error("Error fetching forecast:", error);
       }
     };
+
     fetchForecast();
   }, [currentTrip]);
 
   return (
-    <div className="forecast__container">
+    <div className="forecast-container">
       {currentTrip ? (
         forecast?.days.map(day => {
           return <ForecastItem key={day.datetime} day={day} />;

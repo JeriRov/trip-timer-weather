@@ -1,3 +1,5 @@
+export const COUNTDOWN_INTERVAL = 1000;
+
 export const INITIAL_COUNTDOWN = {
   days: 0,
   hours: 0,

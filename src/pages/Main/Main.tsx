@@ -2,18 +2,21 @@ import "./Main.css";
 
 import React, { ChangeEvent, useState } from "react";
 
-import { AddTripModal } from "../../components/AddTripModal/AddTripModal";
-import { Trip } from "../../api/trip/trip.types";
-import { Container } from "../../components/Container/Container";
-import { CustomInput } from "../../components/CustomInput/CustomInput";
-import { Forecast } from "../../components/Forecast/Forecast";
-import { SearchIcon } from "../../components/Icons/SearchIcon";
-import { TripList } from "../../components/TripList/TripList";
-import { WeatherSidebar } from "../../components/WeatherSidebar/WeatherSidebar";
-import { useDebounce } from "../../hooks/useDebounce";
-import { setTrip } from "../../redux/features/trip/tripSlice";
-import { useAppDispatch } from "../../redux/hooks";
-import { DEBOUNCE_DELAY, MOCK_TRIPS } from "./main.config";
+import { AddTripModal } from "components/AddTripModal/AddTripModal";
+import { Container } from "components/Container/Container";
+import { CustomInput } from "components/CustomInput/CustomInput";
+import { Forecast } from "components/Forecast/Forecast";
+import { SearchIcon } from "components/Icons/SearchIcon";
+import { TripList } from "components/TripList/TripList";
+import { WeatherSidebar } from "components/WeatherSidebar/WeatherSidebar";
+
+import { DEBOUNCE_DELAY, MOCK_TRIPS } from "pages/Main/main.config";
+
+import { useAppDispatch } from "app/hooks";
+import { setTrip } from "features/trip/tripSlice";
+import { useDebounce } from "hooks/useDebounce";
+
+import { Trip } from "api/trip/trip.types";
 
 export function Main() {
   const dispatch = useAppDispatch();
@@ -26,6 +29,10 @@ export function Main() {
   const debouncedHandleAddTripClick = useDebounce<Trip>((trip: Trip) => {
     setTrips(prevState => [...prevState, trip]);
   }, DEBOUNCE_DELAY);
+
+  const handleTripAdd = (trip: Trip) => {
+    debouncedHandleAddTripClick(trip);
+  };
 
   const handleModalOpen = () => {
     setShowModal(true);
@@ -69,19 +76,19 @@ export function Main() {
           </h1>
           <CustomInput
             className="trip-search"
-            placeholder="Search your trip"
             icon={<SearchIcon />}
             onChange={handleSearchInputChange}
+            placeholder="Search your trip"
           />
           <AddTripModal
-            show={showModal}
             onClose={handleModalClose}
-            onTripAdd={debouncedHandleAddTripClick}
+            onTripAdd={handleTripAdd}
+            show={showModal}
           />
           <TripList
-            trips={filteredTrips}
-            onTripClick={handleTripClick}
             onAddTripClick={handleModalOpen}
+            onTripClick={handleTripClick}
+            trips={filteredTrips}
           />
           <h2 className="font-normal">Forecast</h2>
           <Forecast />

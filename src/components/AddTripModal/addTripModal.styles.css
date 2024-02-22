@@ -73,18 +73,11 @@
     width: 100%;
 }
 
-.close:hover,
-.close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-}
-
 .weather-modal.show {
     display: block;
 }
 
-.weather-modal_button-container {
+.weather-modal__button-container {
     display: flex;
     justify-content: flex-end;
     gap: 1rem;

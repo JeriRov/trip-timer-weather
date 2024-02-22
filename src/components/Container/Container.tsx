@@ -2,7 +2,7 @@ import "./container.styles.css";
 
 import React, { PropsWithChildren } from "react";
 
-import { ContainerProps } from "./container.types";
+import { ContainerProps } from "components/Container/container.types";
 
 export function Container({
   children,

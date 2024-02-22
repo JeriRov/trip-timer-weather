@@ -1,11 +1,12 @@
-import "./CustomDatePicker.css";
+import "./customDatePicker.styles.css";
 
 import { format } from "date-fns";
 import React, { ChangeEvent, FocusEvent, useState } from "react";
 
-import { CalendarIcon } from "../Icons/CalendarIcon";
-import { FORMAT } from "../../constants/formats";
-import { CustomDatePickerProps } from "./customDatePicker.types";
+import { CustomDatePickerProps } from "components/CustomDatePicker/customDatePicker.types";
+import { CalendarIcon } from "components/Icons/CalendarIcon";
+
+import { FORMAT } from "constants/formats";
 
 export function CustomDatePicker({
   onSelectDate,
@@ -38,13 +39,13 @@ export function CustomDatePicker({
   return (
     <div className="custom-datepicker__container">
       <input
-        value={selectedDate || ""}
-        min={minDate && format(minDate, FORMAT.ISO_8601)}
-        max={maxDate && format(maxDate, FORMAT.ISO_8601)}
         className={`custom-datepicker__input ${className}`}
+        max={maxDate ? format(maxDate, FORMAT.ISO_8601) : undefined}
+        min={minDate ? format(minDate, FORMAT.ISO_8601) : undefined}
+        onBlur={handleBlur}
         onChange={handleDateChange}
         onFocus={handleFocus}
-        onBlur={handleBlur}
+        value={selectedDate || ""}
         {...props}
         type="text"
       />

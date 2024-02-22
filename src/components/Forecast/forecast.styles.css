@@ -1,4 +1,4 @@
-.forecast__container {
+.forecast-container {
     display: flex;
     gap: 2rem;
     overflow-x: auto;

@@ -1,19 +1,17 @@
 import "./tripItem.styles.css";
+import { TripItemProps } from "components/TripItem/tripItem.types";
 
-import { TripItemProps } from "./tripItem.types";
+export function TripItem({ trip, onClick }: Readonly<TripItemProps>) {
+  const handleClick = () => onClick && onClick(trip);
 
-export function TripItem({
-  trip,
-  onClick: handleClick,
-}: Readonly<TripItemProps>) {
   return (
     <button
-      onClick={() => handleClick && handleClick(trip)}
-      type="button"
-      className="trip-item__container"
       key={trip.id}
+      className="trip-item__container"
+      onClick={handleClick}
+      type="button"
     >
-      <img src={trip.city.image} alt={trip.city.name} />
+      <img alt={trip.city.name} src={trip.city.image} />
       <div className="trip-item_info-container">
         <span className="trip-item_title">{trip.city.name}</span>
         <span className="trip-item_date">

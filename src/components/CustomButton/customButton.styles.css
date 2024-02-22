@@ -3,12 +3,12 @@
     border-radius: .25rem;
 }
 
-.custom-button_primary {
+.custom-button__primary {
     background-color: var(--blue-300);
     color: var(--white);
 }
 
-.custom-button_outlined {
+.custom-button__outlined {
     background-color: var(--white);
     border: 2px solid var(--gray-200);
 }

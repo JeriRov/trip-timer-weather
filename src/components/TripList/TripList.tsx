@@ -1,7 +1,8 @@
 import "./tripList.styles.css";
+import React from "react";
 
-import { TripItem } from "../TripItem/TripItem";
-import { TripListProps } from "./tripList.types";
+import { TripItem } from "components/TripItem/TripItem";
+import { TripListProps } from "components/TripList/tripList.types";
 
 export function TripList({
   trips,
@@ -11,12 +12,12 @@ export function TripList({
   return (
     <div className="trip-list">
       {trips.map(trip => (
-        <TripItem key={trip.id} trip={trip} onClick={handleTripClick} />
+        <TripItem key={trip.id} onClick={handleTripClick} trip={trip} />
       ))}
       <button
-        type="button"
         className="trip-list__add-button"
         onClick={handleAddTripClick}
+        type="button"
       >
         <span className="trip-list__add-button-icon"> + </span>
         <span> Add trip </span>

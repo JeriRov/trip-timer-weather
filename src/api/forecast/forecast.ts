@@ -1,7 +1,9 @@
 import { format } from "date-fns";
 
-import { FORMAT } from "../../constants/formats";
-import { weatherAPI } from "../index";
+import { FORMAT } from "constants/formats";
+
+import { weatherAPI } from "api/index";
+
 import { ForecastType } from "./forecast.types";
 
 const WEATHER_API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
@@ -24,5 +26,6 @@ export const getCurrentWeatherForecast = async (location: string) => {
   const { data } = await weatherAPI.get<ForecastType>(
     `${location}/today?unitGroup=metric&include=days&key=${WEATHER_API_KEY}&contentType=json`
   );
+
   return data;
 };

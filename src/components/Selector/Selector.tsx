@@ -2,7 +2,8 @@ import "./selector.styles.css";
 
 import React, { ChangeEvent, useState } from "react";
 
-import { SelectorProps } from "./selector.types";
+import { BLUR_TIMEOUT } from "components/Selector/selector.config";
+import { SelectorProps } from "components/Selector/selector.types";
 
 export function Selector<T>({
   items,
@@ -25,6 +26,7 @@ export function Selector<T>({
         .toLowerCase()
         .includes(e.target.value.toLowerCase())
     );
+
     setSuggestions(filteredItems);
   };
 
@@ -43,29 +45,29 @@ export function Selector<T>({
   const handleBlur = () => {
     setTimeout(() => {
       setShowSuggestions(false);
-    }, 200);
+    }, BLUR_TIMEOUT);
   };
 
   return (
     <div className="selector__item-container">
       <input
-        type="text"
-        value={searchQuery}
+        className={`selector ${className}`}
+        onBlur={handleBlur}
         onChange={handleInputChange}
         onFocus={handleFocus}
-        onBlur={handleBlur}
-        className={`selector ${className}`}
+        type="text"
+        value={searchQuery}
         {...props}
       />
-      {showSuggestions && (
+      {showSuggestions ? (
         <ul className="selector__list-container">
           {suggestions.length > 0 ? (
             suggestions.map(item => (
               <button
-                type="button"
                 key={getKey(item)}
-                onClick={() => handleSelectItem(item)}
                 className="selector__item"
+                onClick={() => handleSelectItem(item)}
+                type="button"
               >
                 {renderItem(item)}
               </button>
@@ -74,7 +76,7 @@ export function Selector<T>({
             <span className="selector__no-items-message">No items found</span>
           )}
         </ul>
-      )}
+      ) : null}
     </div>
   );
 }

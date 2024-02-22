@@ -1,15 +1,25 @@
 import "./weatherSidebar.types.css";
 
 import { differenceInMilliseconds, format } from "date-fns";
-import { PropsWithChildren, useEffect, useState } from "react";
+import React, { PropsWithChildren, useEffect, useState } from "react";
 
-import { getCurrentWeatherForecast } from "../../api/forecast/forecast";
-import { ForecastType } from "../../api/forecast/forecast.types";
-import { Loader } from "../Loader/Loader";
-import { FORMAT } from "../../constants/formats";
-import { useAppSelector } from "../../redux/hooks";
-import { INITIAL_COUNTDOWN, MILLISECONDS } from "./weatherSidebar.config";
-import { CountdownType, SidebarProps } from "./weatherSidebar.types";
+import { Loader } from "components/Loader/Loader";
+import {
+  COUNTDOWN_INTERVAL,
+  INITIAL_COUNTDOWN,
+  MILLISECONDS,
+} from "components/WeatherSidebar/weatherSidebar.config";
+import {
+  CountdownType,
+  SidebarProps,
+} from "components/WeatherSidebar/weatherSidebar.types";
+
+import { FORMAT } from "constants/formats";
+
+import { getCurrentWeatherForecast } from "api/forecast/forecast";
+import { useAppSelector } from "app/hooks";
+
+import { ForecastType } from "api/forecast/forecast.types";
 
 export function WeatherSidebar({
   isActive,
@@ -27,6 +37,7 @@ export function WeatherSidebar({
       try {
         const cityName = currentTrip.city.name;
         const currentWeatherFetch = await getCurrentWeatherForecast(cityName);
+
         setCurrentWeather(currentWeatherFetch);
       } catch (error) {
         console.error("Error fetching weather data:", error);
@@ -51,6 +62,7 @@ export function WeatherSidebar({
         const seconds = Math.floor(
           (difference % MILLISECONDS.MINUTE) / MILLISECONDS.SECOND
         );
+
         setCountdown({ days, hours, minutes, seconds, started: false });
       } else {
         setCountdown(INITIAL_COUNTDOWN);
@@ -59,7 +71,8 @@ export function WeatherSidebar({
 
     fetchWeatherData();
     updateCountdown();
-    const interval = setInterval(updateCountdown, 1000);
+    const interval = setInterval(updateCountdown, COUNTDOWN_INTERVAL);
+
     return () => clearInterval(interval);
   }, [currentTrip]);
 
@@ -84,9 +97,9 @@ export function WeatherSidebar({
               <div className="sidebar__weather">
                 <div className="sidebar__temperature">
                   <img
+                    alt="Weather icon"
                     loading="lazy"
                     src={`/assets/forecast/${currentWeather?.days[0].icon}.svg`}
-                    alt="Weather icon"
                   />
                   <span>{Math.round(currentWeather?.days[0].temp ?? 0)}</span>
                   <div className="sidebar__weather-degrees-symbol">°C</div>
