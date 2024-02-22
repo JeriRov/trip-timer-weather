@@ -7,12 +7,14 @@ import { ForecastItem } from "components/ForecastItem/ForecastItem";
 import { getForecastByTimeline } from "api/forecast/forecast";
 import { useAppSelector } from "app/hooks";
 import { RootState } from "app/store";
+import { useToast } from "context/ToastContext/ToastContext";
 
 import { ForecastType } from "api/forecast/forecast.types";
 
 export function Forecast() {
   const { currentTrip } = useAppSelector((state: RootState) => state.trip);
   const [forecast, setForecast] = useState<ForecastType | null>(null);
+  const { toast } = useToast();
 
   useEffect(() => {
     const fetchForecast = async () => {
@@ -26,12 +28,12 @@ export function Forecast() {
 
         setForecast(fetchedForecast);
       } catch (error) {
-        console.error("Error fetching forecast:", error);
+        toast("Error fetching forecast!", "error");
       }
     };
 
     fetchForecast();
-  }, [currentTrip]);
+  }, [currentTrip, toast]);
 
   return (
     <div className="forecast-container">

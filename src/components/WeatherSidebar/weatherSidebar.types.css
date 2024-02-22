@@ -8,6 +8,10 @@
     position: fixed;
     top: 0;
     right: -32rem;
+    -webkit-transition: right 0.5s ease;
+    -moz-transition: right 0.5s ease;
+    -o-transition: right 0.5s ease;
+    -ms-transition: right 0.5s ease;
     transition: right 0.5s ease;
 }
 
@@ -97,6 +101,10 @@
 
 .sidebar__main-content {
     margin-right: 0;
+    -webkit-transition: margin-right .5s ease;
+    -moz-transition: margin-right .5s ease;
+    -o-transition: margin-right .5s ease;
+    -ms-transition: margin-right .5s ease;
     transition: margin-right .5s ease;
 }
 

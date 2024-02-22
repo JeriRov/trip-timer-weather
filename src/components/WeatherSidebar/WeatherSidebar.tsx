@@ -18,6 +18,7 @@ import { FORMAT } from "constants/formats";
 
 import { getCurrentWeatherForecast } from "api/forecast/forecast";
 import { useAppSelector } from "app/hooks";
+import { useToast } from "context/ToastContext/ToastContext";
 
 import { ForecastType } from "api/forecast/forecast.types";
 
@@ -29,6 +30,7 @@ export function WeatherSidebar({
   const [currentWeather, setCurrentWeather] = useState<ForecastType>();
   const [countdown, setCountdown] = useState<CountdownType>(INITIAL_COUNTDOWN);
   const [isLoading, setIsLoading] = useState(true);
+  const { toast } = useToast();
 
   useEffect(() => {
     if (!currentTrip) return undefined;
@@ -40,7 +42,7 @@ export function WeatherSidebar({
 
         setCurrentWeather(currentWeatherFetch);
       } catch (error) {
-        console.error("Error fetching weather data:", error);
+        toast("Error fetching weather data!", "error");
       } finally {
         setIsLoading(false);
       }
@@ -74,7 +76,7 @@ export function WeatherSidebar({
     const interval = setInterval(updateCountdown, COUNTDOWN_INTERVAL);
 
     return () => clearInterval(interval);
-  }, [currentTrip]);
+  }, [currentTrip, toast]);
 
   return (
     <>
@@ -90,7 +92,7 @@ export function WeatherSidebar({
             <div className="sidebar__weather-container">
               <span>
                 {format(
-                  new Date(currentWeather?.days[0].datetime ?? ""),
+                  new Date(currentWeather?.days[0].datetime ?? 0),
                   FORMAT.DAY_OF_WEEK
                 )}
               </span>
