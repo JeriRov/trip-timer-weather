@@ -1,15 +1,25 @@
+.trip-list__container {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+}
+
 .trip-list {
     overflow-x: auto;
     display: flex;
     flex-direction: row;
+    scroll-snap-type: x mandatory;
     gap: 4.5rem;
     padding-bottom: .5rem;
+    white-space: nowrap;
 }
 
 .trip-list img {
     width: var(--image-width);
     height: var(--image-height);
     object-fit: cover;
+    scroll-snap-align: center;
 }
 
 .trip-list__add-button {
@@ -24,6 +34,7 @@
     font-size: larger;
 }
 
+
 .trip-list__add-button:hover {
     background-color: var(--gray-200);
     cursor: pointer;
@@ -31,4 +42,32 @@
 
 .trip-list__add-button-icon {
     font-size: 3rem;
+}
+
+.trip-list__nav-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--purple-100);
+    min-width: 3.5rem;
+    min-height: 3.5rem;
+    text-align: center;
+    color: black;
+    border-radius: 50%;
+    cursor: pointer;
+}
+.trip-list__nav-button--left {
+    margin-right: 1rem;
+}
+.trip-list__nav-button--right {
+    margin-left: 1rem;
+}
+
+.trip-list__nav-button:hover {
+    background-color: var(--purple-200)
+}
+
+.trip-list__nav-button-icon {
+    width: 3rem;
+    height: 3rem;
 }

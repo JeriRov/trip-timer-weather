@@ -15,8 +15,8 @@ export function ForecastItem({ day }: Readonly<ForecastItemProps>) {
   };
 
   return (
-    <div className="forecast-item-container">
-      <span className="forecast-item-weekday">{getWeekday(day.datetime)}</span>
+    <div className="forecast-item__container">
+      <span className="forecast-item__weekday">{getWeekday(day.datetime)}</span>
       <img
         alt={day.icon}
         loading="lazy"

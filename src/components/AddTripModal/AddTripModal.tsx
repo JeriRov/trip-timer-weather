@@ -11,6 +11,8 @@ import { Selector } from "components/Selector/Selector";
 
 import { MOCK_CITIES } from "constants/cities";
 
+import { useToast } from "context/ToastContext/ToastContext";
+
 import { City } from "api/trip/trip.types";
 
 export function AddTripModal({
@@ -21,14 +23,20 @@ export function AddTripModal({
   const [selectedCity, setSelectedCity] = useState<City>();
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
-
+  const { toast } = useToast();
   const handleInputChange =
     (setter: React.Dispatch<React.SetStateAction<string>>) => (value: string) =>
       setter(value);
 
   const handleDoneClick = () => {
-    if (!selectedCity || !startDate || !endDate) return;
-    if (startDate > endDate) return;
+    if (!selectedCity || !startDate || !endDate) {
+      toast("Please fill all the fields!", "error");
+      return;
+    }
+    if (startDate > endDate) {
+      toast("Start date must be before end date!", "error");
+      return;
+    }
     onTripAdd({
       id: new Date().getTime().toString(),
       city: selectedCity,

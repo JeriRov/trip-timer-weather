@@ -1,11 +1,13 @@
 .toast {
     display: flex;
+    z-index: 9999;
     justify-content: center;
     align-items: center;
     padding: .75rem;
     border-radius: .25rem;
     position: fixed;
     right: 50%;
+    transform: translateX(50%);
     bottom: -10rem;
     -webkit-transition: bottom 0.3s ease;
     -moz-transition: bottom 0.3s ease;
