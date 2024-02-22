@@ -1,8 +1,8 @@
-.font-normal {
+.main__font-normal {
   font-weight: normal;
 }
 
-.trip-search {
+.main__trip-search {
   width: 20rem;
   margin: 4rem 0 4rem 0;
 }

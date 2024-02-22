@@ -12,9 +12,9 @@ export function TripItem({ trip, onClick }: Readonly<TripItemProps>) {
       type="button"
     >
       <img alt={trip.city.name} src={trip.city.image} />
-      <div className="trip-item_info-container">
-        <span className="trip-item_title">{trip.city.name}</span>
-        <span className="trip-item_date">
+      <div className="trip-item__info-container">
+        <span className="trip-item__title">{trip.city.name}</span>
+        <span className="trip-item__date">
           {`${trip.startDate.toLocaleDateString()} - ${trip.endDate.toLocaleDateString()}`}
         </span>
       </div>
