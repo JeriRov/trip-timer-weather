@@ -41,4 +41,18 @@ export const MOCK_CITIES: City[] = [
     image:
       "https://tourismmedia.italia.it/is/image/mitur/20220127150143-colosseo-roma-lazio-shutterstock-756032350-1?wid=1600&hei=900&fit=constrain,1&fmt=webp",
   },
+  {
+    name: "Kyiv",
+    image:
+      "https://www.globsec.org/sites/default/files/styles/inline/public/2022-10/AdobeStock_237922991-scaled-e1666004413531.jpeg?itok=oRrVvn-5",
+  },
+  {
+    name: "Adamstown",
+    image: "https://www.cruisemapper.com/images/ports/424-dd04a74568ff.jpg",
+  },
+  {
+    name: "Egypt",
+    image:
+      "https://www.state.gov/wp-content/uploads/2023/07/shutterstock_1037036482v2.jpg",
+  },
 ];
