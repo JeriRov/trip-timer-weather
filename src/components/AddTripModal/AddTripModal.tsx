@@ -21,12 +21,16 @@ export function AddTripModal({
   onClose: handleClose,
 }: Readonly<AddTripModalProps>) {
   const [selectedCity, setSelectedCity] = useState<City>();
-  const [startDate, setStartDate] = useState("");
-  const [endDate, setEndDate] = useState("");
+  const [startDate, setStartDate] = useState<string>("");
+  const [endDate, setEndDate] = useState<string>("");
   const { toast } = useToast();
-  const handleInputChange =
-    (setter: React.Dispatch<React.SetStateAction<string>>) => (value: string) =>
-      setter(value);
+  const handleStartDateChange = (date: string) => {
+    setStartDate(date);
+  };
+
+  const handleEndDateChange = (date: string) => {
+    setEndDate(date);
+  };
 
   const handleDoneClick = () => {
     if (!selectedCity || !startDate || !endDate) {
@@ -43,6 +47,9 @@ export function AddTripModal({
       startDate: new Date(startDate),
       endDate: new Date(endDate),
     });
+    setSelectedCity(undefined);
+    setStartDate("");
+    setEndDate("");
     handleClose();
   };
 
@@ -84,6 +91,7 @@ export function AddTripModal({
               onVisibleItem={handleVisibleItem}
               placeholder="Please select a city"
               renderItem={(city: City) => <div>{city.name}</div>}
+              value={selectedCity?.name || ""}
             />
             <p>
               <span>*</span> Start date
@@ -93,8 +101,9 @@ export function AddTripModal({
               maxDate={MAX_DATE}
               minDate={new Date()}
               name="start-datepicker"
-              onSelectDate={handleInputChange(setStartDate)}
+              onSelectDate={handleStartDateChange}
               placeholder="Please select a start date"
+              value={startDate}
             />
             <p>
               <span>*</span> End date
@@ -104,8 +113,9 @@ export function AddTripModal({
               maxDate={MAX_DATE}
               minDate={new Date()}
               name="end-datepicker"
-              onSelectDate={handleInputChange(setEndDate)}
+              onSelectDate={handleEndDateChange}
               placeholder="Please select an end date"
+              value={endDate}
             />
           </form>
         </div>

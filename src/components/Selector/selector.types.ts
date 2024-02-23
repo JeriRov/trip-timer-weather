@@ -6,4 +6,5 @@ export type SelectorProps<T> = {
   onVisibleItem: (item: T) => string;
   onSelectItem: (item: T) => void;
   getKey: (item: T) => string;
+  value: string;
 } & DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>;
