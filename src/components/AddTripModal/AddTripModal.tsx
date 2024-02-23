@@ -47,10 +47,10 @@ export function AddTripModal({
       startDate: new Date(startDate),
       endDate: new Date(endDate),
     });
+    handleClose();
     setSelectedCity(undefined);
     setStartDate("");
     setEndDate("");
-    handleClose();
   };
 
   const handleSelectItem = (city: City) => {
@@ -91,6 +91,7 @@ export function AddTripModal({
               onVisibleItem={handleVisibleItem}
               placeholder="Please select a city"
               renderItem={(city: City) => <div>{city.name}</div>}
+              value={selectedCity?.name || ""}
             />
             <p>
               <span>*</span> Start date

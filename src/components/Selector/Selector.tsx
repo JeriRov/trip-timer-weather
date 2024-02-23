@@ -1,6 +1,6 @@
 import "./selector.styles.css";
 
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 
 import { BLUR_TIMEOUT } from "components/Selector/selector.config";
 import { SelectorProps } from "components/Selector/selector.types";
@@ -12,17 +12,22 @@ export function Selector<T>({
   onVisibleItem,
   getKey,
   className,
+  value,
   ...props
 }: SelectorProps<T>) {
-  const [searchQuery, setSearchQuery] = useState<string>("");
+  const [searchQuery, setSearchQuery] = useState<string>(value);
   const [suggestions, setSuggestions] = useState<T[]>([]);
   const [showSuggestions, setShowSuggestions] = useState<boolean>(false);
+
+  useEffect(() => {
+    setSearchQuery(value);
+  }, [value]);
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(e.target.value);
     const filteredItems = items.filter(item =>
       onVisibleItem(item)
-        ?.toString()
+        .toString()
         .toLowerCase()
         .includes(e.target.value.toLowerCase())
     );
