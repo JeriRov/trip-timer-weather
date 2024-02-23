@@ -6,6 +6,6 @@ export type City = {
 export type Trip = {
   id: string;
   city: City;
-  startDate: Date;
-  endDate: Date;
+  startDate: string;
+  endDate: string;
 };

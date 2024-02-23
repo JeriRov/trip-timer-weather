@@ -62,11 +62,9 @@
 }
 
 .sidebar__weather-container img {
-    position: absolute;
     width: 5rem;
     height: 5rem;
     margin-top: .5rem;
-    left: 9rem;
 }
 
 .sidebar__weather {
@@ -74,7 +72,6 @@
 }
 
 .sidebar__weather span {
-    width: 100%;
     display: flex;
     font-size: 4rem;
     font-weight: normal;
@@ -82,6 +79,7 @@
 
 .sidebar__temperature {
     display: flex;
+    gap: 0.5rem;
     width: 100%;
 }
 
@@ -94,8 +92,8 @@
 }
 
 .sidebar__weather-degrees-symbol {
-    position: absolute;
-    right: 12.5rem;
+    width: 5rem;
+    height: 5rem;
     font-weight: normal;
 }
 
