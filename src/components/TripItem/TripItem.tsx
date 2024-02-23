@@ -1,13 +1,17 @@
 import "./tripItem.styles.css";
 import { TripItemProps } from "components/TripItem/tripItem.types";
 
-export function TripItem({ trip, onClick }: Readonly<TripItemProps>) {
+export function TripItem({
+  trip,
+  onClick,
+  className,
+}: Readonly<TripItemProps>) {
   const handleClick = () => onClick && onClick(trip);
 
   return (
     <button
       key={trip.id}
-      className="trip-item__container"
+      className={`trip-item__container ${className}`}
       onClick={handleClick}
       type="button"
     >

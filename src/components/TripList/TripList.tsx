@@ -12,6 +12,7 @@ import { TripListProps } from "components/TripList/tripList.types";
 
 export function TripList({
   trips,
+  selectedTrip,
   onTripClick: handleTripClick,
   onAddTripClick: handleAddTripClick,
 }: Readonly<TripListProps>) {
@@ -84,7 +85,12 @@ export function TripList({
       ) : null}
       <div ref={tripListRef} className="trip-list">
         {trips.map(trip => (
-          <TripItem key={trip.id} onClick={handleTripClick} trip={trip} />
+          <TripItem
+            key={trip.id}
+            className={`${selectedTrip?.id === trip.id && "trip-list__selected-trip"}`}
+            onClick={handleTripClick}
+            trip={trip}
+          />
         ))}
         <button
           className="trip-list__add-button"

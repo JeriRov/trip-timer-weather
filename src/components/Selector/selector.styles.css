@@ -25,6 +25,8 @@
 }
 
 .selector__list-container {
+    overflow-y: auto;
+    height: 22rem;
     padding: 0.5rem;
     margin: 0;
     width: 100%;

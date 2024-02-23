@@ -4,4 +4,5 @@ export type TripListProps = {
   trips: Trip[];
   onTripClick?: (trip: Trip) => void;
   onAddTripClick?: () => void;
+  selectedTrip?: Trip | null;
 };
