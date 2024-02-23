@@ -17,7 +17,7 @@ export const MOCK_TRIPS: Trip[] = [
   {
     id: "2",
     city: MOCK_CITIES[1],
-    startDate: new Date(Date.now()),
+    startDate: new Date(Date.now() + SEVEN_DAYS_IN_MS),
     endDate: new Date(Date.now() + FIFTEEN_DAYS_IN_MS),
   },
   {
