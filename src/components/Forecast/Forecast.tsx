@@ -22,8 +22,8 @@ export function Forecast() {
       try {
         const fetchedForecast = await getForecastByTimeline(
           currentTrip.city.name,
-          currentTrip.startDate,
-          currentTrip.endDate
+          new Date(currentTrip.startDate),
+          new Date(currentTrip.endDate)
         );
 
         setForecast(fetchedForecast);

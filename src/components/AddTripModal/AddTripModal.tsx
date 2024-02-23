@@ -44,8 +44,8 @@ export function AddTripModal({
     onTripAdd({
       id: new Date().getTime().toString(),
       city: selectedCity,
-      startDate: new Date(startDate),
-      endDate: new Date(endDate),
+      startDate,
+      endDate,
     });
     setSelectedCity(undefined);
     setStartDate("");

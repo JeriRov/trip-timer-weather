@@ -1,6 +1,6 @@
 import "pages/Main/main.styles.css";
 
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 
 import { AddTripModal } from "components/AddTripModal/AddTripModal";
 import { Container } from "components/Container/Container";
@@ -21,10 +21,22 @@ import { Trip } from "api/trip/trip.types";
 export function Main() {
   const dispatch = useAppDispatch();
   const [searchQuery, setSearchQuery] = useState("");
-  const [trips, setTrips] = useState<Trip[]>(MOCK_TRIPS);
+  const [trips, setTrips] = useState<Trip[]>([]);
   const [showModal, setShowModal] = useState(false);
   const [isActive, setIsActive] = useState(false);
   const [activeTrip, setActiveTrip] = useState<Trip | null>(null);
+
+  useEffect(() => {
+    const storedTripsString = localStorage.getItem("trips");
+
+    if (storedTripsString) {
+      const storedTrips: Trip[] = JSON.parse(storedTripsString);
+
+      setTrips(storedTrips);
+    } else {
+      setTrips(MOCK_TRIPS);
+    }
+  }, []);
 
   const debouncedHandleAddTripClick = useDebounce<Trip>((trip: Trip) => {
     setTrips(prevState => [...prevState, trip]);
@@ -32,6 +44,14 @@ export function Main() {
 
   const handleTripAdd = (trip: Trip) => {
     debouncedHandleAddTripClick(trip);
+
+    const storedTripsString = localStorage.getItem("trips");
+    const storedTrips: Trip[] = storedTripsString
+      ? JSON.parse(storedTripsString)
+      : [];
+    const updatedTrips = [...storedTrips, trip];
+
+    localStorage.setItem("trips", JSON.stringify(updatedTrips));
   };
 
   const handleModalOpen = () => {
