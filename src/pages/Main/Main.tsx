@@ -93,6 +93,7 @@ export function Main() {
           <TripList
             onAddTripClick={handleModalOpen}
             onTripClick={handleTripClick}
+            selectedTrip={activeTrip}
             trips={filteredTrips}
           />
           <h2 className="main__font-normal">Forecast</h2>
