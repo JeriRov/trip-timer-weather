@@ -1,5 +1,5 @@
 import "./header.styles.css";
-import React from "react";
+import React, { useEffect } from "react";
 
 import { CustomButton } from "components/CustomButton/CustomButton";
 import { Facebook } from "components/Icons/Facebook";
@@ -7,7 +7,7 @@ import { GoogleIcon } from "components/Icons/GoogleIcon";
 
 import { signInWithFacebook, signInWithGmail } from "app/firebase/auth";
 import { useToast } from "context/ToastContext/ToastContext";
-import { saveUserToLocalStorage } from "utils/user";
+import { getUserFromLocalStorage, saveUserToLocalStorage } from "utils/user";
 
 import { UserType } from "api/user/user.types";
 
@@ -15,6 +15,14 @@ export function Header() {
   const [showSignInDropDown, setShowSignInDropDown] = React.useState(false);
   const [user, setUser] = React.useState<UserType | null>(null);
   const { toast } = useToast();
+
+  useEffect(() => {
+    const userFromLocalStorage = getUserFromLocalStorage();
+
+    if (userFromLocalStorage) {
+      setUser(userFromLocalStorage);
+    }
+  }, []);
   const handleDropDownClick = () => {
     setShowSignInDropDown(prevState => !prevState);
   };

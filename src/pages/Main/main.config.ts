@@ -1,4 +1,7 @@
+import { format } from "date-fns";
+
 import { MOCK_CITIES } from "constants/cities";
+import { FORMAT } from "constants/formats";
 
 import { Trip } from "api/trip/trip.types";
 
@@ -11,19 +14,19 @@ export const MOCK_TRIPS: Trip[] = [
   {
     id: "1",
     city: MOCK_CITIES[0],
-    startDate: new Date().toLocaleDateString(),
-    endDate: new Date(Date.now() + SEVEN_DAYS_IN_MS).toLocaleDateString(),
+    startDate: format(new Date(), FORMAT.ISO_8601),
+    endDate: format(new Date(Date.now() + SEVEN_DAYS_IN_MS), FORMAT.ISO_8601),
   },
   {
     id: "2",
     city: MOCK_CITIES[1],
-    startDate: new Date(Date.now() + SEVEN_DAYS_IN_MS).toLocaleDateString(),
-    endDate: new Date(Date.now() + FIFTEEN_DAYS_IN_MS).toLocaleDateString(),
+    startDate: format(new Date(Date.now() + SEVEN_DAYS_IN_MS), FORMAT.ISO_8601),
+    endDate: format(new Date(Date.now() + FIFTEEN_DAYS_IN_MS), FORMAT.ISO_8601),
   },
   {
     id: "3",
     city: MOCK_CITIES[2],
-    startDate: new Date(Date.now()).toLocaleDateString(),
-    endDate: new Date(Date.now() + FOUR_DAYS_IN_MS).toLocaleDateString(),
+    startDate: format(new Date(Date.now()), FORMAT.ISO_8601),
+    endDate: format(new Date(Date.now() + FOUR_DAYS_IN_MS), FORMAT.ISO_8601),
   },
 ];
