@@ -1,14 +1,12 @@
 import * as React from "react";
 import { SVGProps } from "react";
 
-import { DEFAULT_ICON_SIZE } from "components/Icons/icons.config";
-
-export function AngleRightIcon(props: Readonly<SVGProps<SVGSVGElement>>) {
+export function AngleRightIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg
-      height={DEFAULT_ICON_SIZE.height}
+      height={24}
       viewBox="0 0 1792 1792"
-      width={DEFAULT_ICON_SIZE.width}
+      width={24}
       xmlns="http://www.w3.org/2000/svg"
       {...props}
     >

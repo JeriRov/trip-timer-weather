@@ -5,7 +5,6 @@ import { CustomButtonProps } from "components/CustomButton/customButton.types";
 export function CustomButton({
   children,
   variant,
-  className,
   ...props
 }: CustomButtonProps) {
   let style: string = BUTTON_VARIANT_STYLES.primary;
@@ -15,11 +14,7 @@ export function CustomButton({
   }
 
   return (
-    <button
-      className={`custom-button ${style} ${className}`}
-      type="button"
-      {...props}
-    >
+    <button className={`custom-button ${style}`} type="button" {...props}>
       {children}
     </button>
   );

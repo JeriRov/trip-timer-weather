@@ -2,7 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 
 import { tripReducer } from "features/trip/tripSlice";
 
-const makeStore = () =>
+export const makeStore = () =>
   configureStore({
     reducer: {
       trip: tripReducer,
@@ -12,8 +12,6 @@ const makeStore = () =>
         serializableCheck: false,
       }),
   });
-
-export const store = makeStore();
 
 export type AppStore = ReturnType<typeof makeStore>;
 export type RootState = ReturnType<AppStore["getState"]>;

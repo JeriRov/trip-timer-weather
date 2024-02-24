@@ -17,7 +17,7 @@ import {
 import { FORMAT } from "constants/formats";
 
 import { getCurrentWeatherForecast } from "api/forecast/forecast";
-import { useAppSelector } from "app/redux/hooks";
+import { useAppSelector } from "app/hooks";
 import { useToast } from "context/ToastContext/ToastContext";
 
 import { ForecastType } from "api/forecast/forecast.types";
