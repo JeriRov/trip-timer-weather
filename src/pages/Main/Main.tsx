@@ -6,13 +6,14 @@ import { AddTripModal } from "components/AddTripModal/AddTripModal";
 import { Container } from "components/Container/Container";
 import { CustomInput } from "components/CustomInput/CustomInput";
 import { Forecast } from "components/Forecast/Forecast";
+import { Header } from "components/Header/Header";
 import { SearchIcon } from "components/Icons/SearchIcon";
 import { TripList } from "components/TripList/TripList";
 import { WeatherSidebar } from "components/WeatherSidebar/WeatherSidebar";
 
 import { DEBOUNCE_DELAY, MOCK_TRIPS } from "pages/Main/main.config";
 
-import { useAppDispatch } from "app/hooks";
+import { useAppDispatch } from "app/redux/hooks";
 import { setTrip } from "features/trip/tripSlice";
 import { useDebounce } from "hooks/useDebounce";
 
@@ -91,14 +92,12 @@ export function Main() {
 
   return (
     <Container>
+      <Header />
       <WeatherSidebar
         isActive={isActive}
         toggleSidebar={() => setIsActive(!isActive)}
       >
         <div className="main__content">
-          <h1>
-            <span className="main__font-normal">Weather</span> Forecast
-          </h1>
           <CustomInput
             className="main__trip-search"
             icon={<SearchIcon />}
