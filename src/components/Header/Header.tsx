@@ -1,5 +1,5 @@
 import "./header.styles.css";
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 
 import { CustomButton } from "components/CustomButton/CustomButton";
 import { Facebook } from "components/Icons/Facebook";
@@ -14,6 +14,8 @@ import { UserType } from "api/user/user.types";
 export function Header() {
   const [showSignInDropDown, setShowSignInDropDown] = React.useState(false);
   const [user, setUser] = React.useState<UserType | null>(null);
+  const dropDownRef = useRef<HTMLDivElement>(null);
+
   const { toast } = useToast();
 
   useEffect(() => {
@@ -23,10 +25,26 @@ export function Header() {
       setUser(userFromLocalStorage);
     }
   }, []);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        dropDownRef.current &&
+        !dropDownRef.current.contains(event.target as Node)
+      ) {
+        setShowSignInDropDown(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [dropDownRef]);
+
   const handleDropDownClick = () => {
     setShowSignInDropDown(prevState => !prevState);
   };
-
   const handleGoogleSignIn = async () => {
     try {
       const credentials = await signInWithGmail();
@@ -78,6 +96,7 @@ export function Header() {
           />
         </button>
         <div
+          ref={dropDownRef}
           className={`header__drop-down-content ${showSignInDropDown ? "show" : ""}`}
         >
           {user ? (
