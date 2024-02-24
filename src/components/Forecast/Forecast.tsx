@@ -5,8 +5,8 @@ import React, { useEffect, useState } from "react";
 import { ForecastItem } from "components/ForecastItem/ForecastItem";
 
 import { getForecastByTimeline } from "api/forecast/forecast";
-import { useAppSelector } from "app/hooks";
-import { RootState } from "app/store";
+import { useAppSelector } from "app/redux/hooks";
+import { RootState } from "app/redux/store";
 import { useToast } from "context/ToastContext/ToastContext";
 
 import { ForecastType } from "api/forecast/forecast.types";
