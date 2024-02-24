@@ -1,0 +1,10 @@
+.forecast__container {
+    display: flex;
+    gap: 2rem;
+    overflow-x: auto;
+    width: 100%;
+}
+
+.forecast__no-trip-text {
+    color: var(--gray-300);
+}

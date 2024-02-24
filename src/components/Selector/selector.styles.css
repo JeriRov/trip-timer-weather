@@ -1,0 +1,48 @@
+.selector {
+    padding: 0.5rem;
+    outline: none;
+    border: 2px solid var(--gray-200);
+    border-radius: .25rem;
+    font-size: 16px;
+}
+
+.selector__no-items-message {
+    padding: 0.5rem 0.5rem;
+    font-weight: 500;
+}
+
+.selector__item {
+    width: 100%;
+    padding: 0.5rem 0.5rem;
+    cursor: pointer;
+    border: 2px solid transparent;
+    font-weight: 500;
+}
+
+.selector__item:hover {
+    background-color: rgba(130, 134, 139, 0.05);
+    border-color: var(--gray-200);
+}
+
+.selector__list-container {
+    overflow-y: auto;
+    height: 22rem;
+    padding: 0.5rem;
+    margin: 0;
+    width: 100%;
+    display: flex;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    flex-direction: column;
+    background-color: white;
+    border: 2px solid #ccc;
+    border-top: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.selector__item-container {
+    display: block;
+    position: relative;
+}

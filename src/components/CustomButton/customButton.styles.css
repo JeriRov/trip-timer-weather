@@ -1,0 +1,16 @@
+.custom-button {
+    padding: 0.5rem 1rem;
+    border-radius: .25rem;
+}
+
+.custom-button__primary {
+    background-color: var(--blue-300);
+    color: var(--white);
+}
+
+.custom-button__outlined {
+    background-color: var(--white);
+    border: 2px solid var(--gray-200);
+}
+
+

@@ -1,0 +1,84 @@
+.weather-modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+.weather-modal__label-text p span {
+    color: red;
+}
+.weather-modal__body {
+    border-radius: .25rem;
+    background-color: white;
+    width: 40%;
+    position: fixed;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.weather-modal__header {
+    padding: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.weather-modal__content {
+    border-top: 1px solid var(--gray-200);
+    border-bottom: 1px solid var(--gray-200);
+    padding: 2.5rem 1.5rem 3.5rem;
+}
+.weather-modal__footer {
+    padding: 1.5rem;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.weather-modal__header-title {
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin: 0;
+}
+
+.weather-modal__close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1rem;
+    cursor: pointer;
+}
+
+.weather-modal__close:hover {
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.weather-modal__end-datepicker-label {
+    margin-bottom: .5rem;
+}
+
+.weather-modal__form {
+    display: flex;
+    flex-direction: column;
+}
+
+.weather-modal__selector {
+    width: 100%;
+}
+
+.weather-modal__datepicker {
+    width: 100%;
+}
+
+.weather-modal.show {
+    display: block;
+}
+
+.weather-modal__button-container {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+}

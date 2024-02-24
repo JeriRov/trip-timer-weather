@@ -1,0 +1,111 @@
+.sidebar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('/public/assets/sidebar/background.png');
+    width: 32rem;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    right: -32rem;
+    -webkit-transition: right 0.5s ease;
+    -moz-transition: right 0.5s ease;
+    -o-transition: right 0.5s ease;
+    -ms-transition: right 0.5s ease;
+    transition: right 0.5s ease;
+}
+
+.sidebar.open {
+    right: 0;
+}
+
+.sidebar__countdown {
+    display: flex;
+    border-radius: 1rem;
+    gap: 3.5rem;
+}
+
+.sidebar__trip-message {
+    font-size: 2rem;
+    font-weight: bolder;
+    margin-bottom: 1rem;
+}
+
+.sidebar__countdown div {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    font-weight: bolder;
+    font-size: 2rem;
+}
+
+.sidebar__countdown span {
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.sidebar__city {
+    font-weight: normal;
+    margin: 0;
+}
+
+.sidebar__weather-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 10rem;
+    gap: .25rem;
+    border-radius: 1rem;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.sidebar__weather-container img {
+    width: 5rem;
+    height: 5rem;
+    margin-top: .5rem;
+}
+
+.sidebar__weather {
+    display: flex;
+}
+
+.sidebar__weather span {
+    display: flex;
+    font-size: 4rem;
+    font-weight: normal;
+}
+
+.sidebar__temperature {
+    display: flex;
+    gap: 0.5rem;
+    width: 100%;
+}
+
+.sidebar__container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20rem 0 12rem;
+}
+
+.sidebar__weather-degrees-symbol {
+    width: 5rem;
+    height: 5rem;
+    font-weight: normal;
+}
+
+.sidebar__main-content {
+    margin-right: 0;
+    -webkit-transition: margin-right .5s ease;
+    -moz-transition: margin-right .5s ease;
+    -o-transition: margin-right .5s ease;
+    -ms-transition: margin-right .5s ease;
+    transition: margin-right .5s ease;
+}
+
+.sidebar__main-content.shifted {
+    margin-right: 32rem;
+}

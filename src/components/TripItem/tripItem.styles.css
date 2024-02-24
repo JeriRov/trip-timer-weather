@@ -1,0 +1,28 @@
+.trip-item__container {
+    display: flex;
+    flex-direction: column;
+}
+
+.trip-item__container:hover {
+    background-color: var(--gray-100);
+    cursor: pointer;
+}
+
+.trip-item__info-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1.5rem;
+    border: 1px solid var(--gray-100);
+}
+
+.trip-item__date {
+    font-size: medium;
+    color: var(--gray-300);
+}
+
+.trip-item__title {
+    font-size: large;
+    font-weight: 500;
+}
