@@ -22,7 +22,7 @@ Using React.js (preferably, but you can use Angular or any other framework), imp
 Additionally:
 1.	✅ Implement next and previous buttons for the list to handle scrolling better
 2.	✅ Sort trips by start trip date
-3.	Implement login through third-party providers (Gmail, Facebook, etc.) - at least one of
+3.	✅ Implement login through third-party providers (Gmail, Facebook, etc.) - at least one of
 4.	✅ Implement store data (trips) after reloading page.
 
 **Please, don’t use any UI components libraries, only HTML/CSS**
