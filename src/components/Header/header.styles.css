@@ -1,0 +1,52 @@
+.header {
+    display: flex;
+    z-index: 100;
+    position: relative;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.header__font-normal {
+    font-weight: normal;
+}
+
+.header__drop-down-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    min-width: 160px;
+    overflow: auto;
+    right: 2.25rem;
+    border-top-left-radius: 1rem;
+    border-bottom-left-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+    padding: 1rem;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.header__drop-down-content.show {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+
+.header__user-button-container {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.header__login-method-container {
+    display: flex;
+    gap: 1rem;
+}
+
+.header__login-method--button {
+    width: 2rem;
+    font-size: 0.5rem;
+    height: 2rem;
+}
+
+.header__sign-out-button {
+    width: 6rem;
+}
