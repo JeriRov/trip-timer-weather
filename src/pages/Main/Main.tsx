@@ -39,20 +39,18 @@ export function Main() {
     }
   }, []);
 
+  useEffect(() => {
+    if (trips.length > 0) {
+      localStorage.setItem("trips", JSON.stringify(trips));
+    }
+  }, [trips]);
+
   const debouncedHandleAddTripClick = useDebounce<Trip>((trip: Trip) => {
     setTrips(prevState => [...prevState, trip]);
   }, DEBOUNCE_DELAY);
 
   const handleTripAdd = (trip: Trip) => {
     debouncedHandleAddTripClick(trip);
-
-    const storedTripsString = localStorage.getItem("trips");
-    const storedTrips: Trip[] = storedTripsString
-      ? JSON.parse(storedTripsString)
-      : [];
-    const updatedTrips = [...storedTrips, trip];
-
-    localStorage.setItem("trips", JSON.stringify(updatedTrips));
   };
 
   const handleModalOpen = () => {

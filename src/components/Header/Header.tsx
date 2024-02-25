@@ -1,5 +1,5 @@
 import "./header.styles.css";
-import React from "react";
+import React, { useEffect, useRef } from "react";
 
 import { CustomButton } from "components/CustomButton/CustomButton";
 import { Facebook } from "components/Icons/Facebook";
@@ -7,18 +7,44 @@ import { GoogleIcon } from "components/Icons/GoogleIcon";
 
 import { signInWithFacebook, signInWithGmail } from "app/firebase/auth";
 import { useToast } from "context/ToastContext/ToastContext";
-import { saveUserToLocalStorage } from "utils/user";
+import { getUserFromLocalStorage, saveUserToLocalStorage } from "utils/user";
 
 import { UserType } from "api/user/user.types";
 
 export function Header() {
   const [showSignInDropDown, setShowSignInDropDown] = React.useState(false);
   const [user, setUser] = React.useState<UserType | null>(null);
+  const dropDownRef = useRef<HTMLDivElement>(null);
+
   const { toast } = useToast();
+
+  useEffect(() => {
+    const userFromLocalStorage = getUserFromLocalStorage();
+
+    if (userFromLocalStorage) {
+      setUser(userFromLocalStorage);
+    }
+  }, []);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        dropDownRef.current &&
+        !dropDownRef.current.contains(event.target as Node)
+      ) {
+        setShowSignInDropDown(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [dropDownRef]);
+
   const handleDropDownClick = () => {
     setShowSignInDropDown(prevState => !prevState);
   };
-
   const handleGoogleSignIn = async () => {
     try {
       const credentials = await signInWithGmail();
@@ -70,6 +96,7 @@ export function Header() {
           />
         </button>
         <div
+          ref={dropDownRef}
           className={`header__drop-down-content ${showSignInDropDown ? "show" : ""}`}
         >
           {user ? (
